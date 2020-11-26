@@ -24,8 +24,8 @@ public class LibroServiceImpl implements LibroService {
 	@Autowired
 	BibliotecaRepository dao;
 	
-	@Autowired
-	LibroVO respuesta;
+	
+	com.ant.BibliotecaRest.VO.LibroVO respuesta;
 	
 	@Override
 	public LibroVO findAll() {
@@ -42,7 +42,6 @@ public class LibroServiceImpl implements LibroService {
 	}
 
 	@Override
-	@Transactional(readOnly = true)
 	public LibroVO save(Libro libro) {
 		respuesta = new LibroVO("102", "Ha ocurrido un error", new ArrayList<Libro>() );
 		try {
@@ -56,7 +55,6 @@ public class LibroServiceImpl implements LibroService {
 	}
 
 	@Override
-	@Transactional(readOnly = true)
 	public LibroVO delete(Integer id) {
 		respuesta = new LibroVO("103", "Ha ocurrido un error", new ArrayList<Libro>() );
 		try {
@@ -88,7 +86,7 @@ public class LibroServiceImpl implements LibroService {
 	public LibroVO findByNombre(String nombre) {
 		respuesta = new LibroVO("105", "Ha ocurrido un error", new ArrayList<Libro>() );
 		try {
-			respuesta.setLibro(dao.findByNombre(nombre));
+			//respuesta.setLibro(dao.findByNombre(nombre));
 			respuesta.setCodigo("0");
 			respuesta.setMensaje("Se a encontrado correctamente el libro: "+ nombre);
 		} catch (Exception e) {
