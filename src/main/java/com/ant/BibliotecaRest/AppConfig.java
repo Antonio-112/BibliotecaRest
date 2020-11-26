@@ -11,7 +11,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 @Configuration
-@ComponentScan("com.ant.BibliotecaRest")
+@ComponentScan()
 @PropertySource("classpath:database.properties")
 public class AppConfig {
 	
