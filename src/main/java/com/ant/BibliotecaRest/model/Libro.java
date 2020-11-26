@@ -4,25 +4,35 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+
+import com.ant.BibliotecaRest.DTO.LibroDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@SequenceGenerator(name="SQ_LIBRO", initialValue=1,allocationSize=1,sequenceName="SQ_LIBRO")
+@Entity
 public class Libro {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SQ_LIBRO")
-	private Integer id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer idLibro;
 	private String nombre;
-	private String precio;
+	private int precio;
 	private boolean disponible;
+	
+	
+	public LibroDTO toDTO() {
+		LibroDTO libro = new LibroDTO();
+		libro.setIdLibro(this.idLibro);
+		libro.setNombre(this.nombre);
+		libro.setPrecio(this.precio);
+		libro.setDisponible(this.isDisponible());
+		return libro;
+	}
 	
 	
 }
